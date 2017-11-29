@@ -1,0 +1,14 @@
+.input-group{
+    margin-bottom: 25px
+}
+.form-group{
+    margin-top: 10px;
+}
+.account{
+    border-top: 1px solid#888; 
+    padding-top:15px; 
+    font-size:85%;
+}
+.panel-body{
+    padding-top:30px;
+}
