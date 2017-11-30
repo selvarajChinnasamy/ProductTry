@@ -7,7 +7,7 @@
       <div class="panel-body">
         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
         <form [formGroup]="companyForm" class="form-horizontal" role="form">
-          
+
 
 
 
@@ -19,105 +19,130 @@
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i>
             </span>
-            <input formControlName="companyName" placeholder="Company Name" type="text" class="form-control" >
+            <input formControlName="companyName" placeholder="Company Name" type="text" class="form-control">
           </div>
           <div class="input-group">
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i>
             </span>
-            <input formControlName="companyLink" type="text"  placeholder="Company Link" class="form-control" >
+            <input formControlName="companyLink" type="text" placeholder="Company Link" class="form-control">
           </div>
           <div class="input-group">
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i>
             </span>
-            <input formControlName="date" type="text"  placeholder="Date" class="form-control" >
+            <input formControlName="date" type="date" placeholder="Date" class="form-control">
           </div>
 
 
 
-          <div formArrayName="positions">
-            <div formGroupName="0">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-              </span>
-              <input formControlName="position" placeholder="Position"  type="text" class="form-control" >
-            </div>
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-              </span>
-              <input formControlName="ctc" type="text" placeholder="CTC"  class="form-control" >
-            </div>
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-              </span>
-              <input formControlName="Qualifications" placeholder="Qualification"  type="text" class="form-control" >
-            </div>
-
-
-            <div formArrayName="rounds">
-                <div formGroupName="0">
+          <div formArrayName="positions" *ngFor="let position of positions.controls;let i=index;">
+            <div [formGroupName]="i">
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-user"></i>
                 </span>
-                <input formControlName="name" type="text" placeholder="Round Name"  class="form-control" >
+                <input formControlName="position" placeholder="Position" type="text" class="form-control">
               </div>
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-user"></i>
                 </span>
-                <input formControlName="discription" placeholder="Round Description"  type="text" class="form-control" >
-              </div>
-            </div>
-            </div>
-
-
-
-            <div formArrayName="depts">
-                <div formGroupName="0">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="glyphicon glyphicon-user"></i>
-                </span>
-                <input formControlName="name" type="text" placeholder="Department Name"  class="form-control" >
+                <input formControlName="ctc" type="text" placeholder="CTC" class="form-control">
               </div>
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-user"></i>
                 </span>
-                <input formControlName="skills" type="text" placeholder="Skills"  class="form-control" >
-              </div>
-            </div>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="glyphicon glyphicon-user"></i>
-                </span>
-                <input formControlName="description" placeholder="Description"  type="text" class="form-control" >
+                <input formControlName="Qualifications" placeholder="Qualification" type="text" class="form-control">
               </div>
 
-           
-          </div>
-        </div>
 
-        <div formArrayName="JobLocations">
-            <div formGroupName="0">
-                <div class="input-group">
+              <div formArrayName="rounds" *ngFor="let round of rounds.controls;let j=index;">
+                <div [formGroupName]="j">
+                  <div class="input-group">
                     <span class="input-group-addon">
                       <i class="glyphicon glyphicon-user"></i>
                     </span>
-                    <input formControlName="location" placeholder="Job Location"  type="text" class="form-control" >
+                    <input formControlName="name" type="text" placeholder="Round Name" class="form-control">
                   </div>
-            </div>
-        </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input formControlName="discription" placeholder="Round Description" type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
 
-       
-       
-         
+              <div class="input-group">
+                <button type="button" class="btn btn-primary" (click)="addRounds()">Add Rounds</button>
+              </div>
+
+              <div formArrayName="depts" *ngFor="let round of department.controls;let d=index;">
+                <div [formGroupName]="d">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input formControlName="name" type="text" placeholder="Department Name" class="form-control">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input formControlName="skills" type="text" placeholder="Skills" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <button type="button" class="btn btn-primary" (click)="addDepartments()">Add Depertments</button>
+              </div>
+
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-user"></i>
+                </span>
+                <input formControlName="description" placeholder="Description" type="text" class="form-control">
+              </div>
+
+              <hr>
+              <hr>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <button type="button" class="btn btn-primary" (click)="addPositions()">Add Positions</button>
+          </div>
+
+          <hr>
+          <div formArrayName="JobLocations" *ngFor="let location of JobLocations.controls;let k=index;">
+            <div [formGroupName]="k">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-user"></i>
+                </span>
+                <input placeholder="Search for Location" (keyup)="0" type="text" #search formControlName="location" class="form-control">
+
+
+
+
+                <div *ngFor="let item of selected;let s=index;">
+                  <div class="selected">
+                    <span>{{item}}</span>
+                    <a (click)="remove(s)">x</a>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+
           <div class="form-group">
             <div class="col-sm-12 controls">
               <a id="btn-login" href="#" class="btn btn-success">Login </a>
@@ -132,3 +157,4 @@
 
 
 <p>Form value: {{ companyForm.value | json }}</p>
+<p>Form Validity: {{companyForm.controls['companyName'].valid}}</p>
